@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello BlogController!{% endblock %}
+{% block title %}PostPage{% endblock %}
 
 {% block body %}
 <style>
@@ -41,5 +41,12 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit.
  venenatis dolor. Maecenas nisl est, ultrices nec congue
   eget, auctor vitae massa. Fusce luctus vestibulum augue ut aliquet
   </p>
+      <a href="{{path('editPost', {idPost:article.id}) }}">Modifier<a/>
+      <a href="#" onclick="event.preventDefault(); confirm('Supprimer ce post ?') &&
+         document.getElementById('form-id').submit();">Supprimer<a/>      
+        <form id ="form-id" action="{{path('deletePost', {idPost:article.id}) }}" method="post" style="display">
+        <input type="hidden" method="_method"  value="DELETE"/>
+
+      </form>
 </div>
 {% endblock %}

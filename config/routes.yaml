@@ -1,3 +1,24 @@
-#index:
-#    path: /
-#    controller: App\Controller\DefaultController::index
+index:
+    path: /
+    controller: App\Controller\BlogController::index
+
+
+post:
+    path: /post/{idPost}
+    controller: App\Controller\BlogController::post
+    methods: [GET]
+
+newpost:
+    path: /newPost
+    controller: App\Controller\BlogController::newPost
+    methods: [GET, POST]
+
+editPost:
+    path: /editPost/{idPost<[0-9]+>}
+    controller: App\Controller\BlogController::editPost
+    methods: [POST, GET]
+deletePost:
+    path: /deletePost/{idPost<[0-9]+>}
+    controller: App\Controller\BlogController::deletePost
+    methods: [GET,POST,DELETE]
+        

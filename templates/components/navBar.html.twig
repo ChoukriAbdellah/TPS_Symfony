@@ -1,0 +1,24 @@
+<div class="container">
+    <nav class="navbar navbar-expand-sm navbar-light bg-light mb-4">
+    <a class="navbar-brand" href="{{path('index')}}">Blog Symfony</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample03" aria-controls="navbarsExample03" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarsExample03">
+        <ul class="navbar-nav ml-auto">
+        <li class="nav-item      {{app.request.get('_route')== 'newpost' ? 'active' :''}}">
+            <a class="nav-link" href="{{path('newpost')}}">Nouveau post </a>
+        </li>
+        <li class="nav-item" {{app.request.get('_route')== 'login' ? 'active' :''}}>
+            <a class="nav-link" href="#">Se connecter</a>
+        </li>
+        <li class="nav-item" {{app.request.get('_route')== 'logout' ? 'active' :''}}>
+            <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Se déconnecter</a>
+        </li>
+        </ul>
+    
+    </div>
+    
+    </nav>
+</div>

@@ -63,11 +63,13 @@ class BlogController extends AbstractController
     {
         $article = $articleRepository->find($idPost) ;
 
-        $form= $this->createForm(ArticleType::Class);
+        $form= $this->createForm(ArticleType::Class, $article);
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-    
+            $data = $form->getData();
+            $article->setTitre($data->getTitre());
+            $article->setDescription($data->getDescription());
             $em->flush();
             $this->addFlash('sucess', 'Article modifié avec succès');
             return $this->redirectToRoute('index');

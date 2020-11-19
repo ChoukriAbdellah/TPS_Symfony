@@ -8,13 +8,20 @@
     <div class="collapse navbar-collapse" id="navbarsExample03">
         <ul class="navbar-nav ml-auto">
         <li class="nav-item      {{app.request.get('_route')== 'newpost' ? 'active' :''}}">
-            <a class="nav-link" href="{{path('newpost')}}">Nouveau post </a>
+        <a class="nav-link" href="{{path('newpost')}}">      
+          <span class="iconify" data-icon="ic:round-article" data-inline="false"></span>
+
+        Nouveau post </a>
         </li>
         <li class="nav-item" {{app.request.get('_route')== 'login' ? 'active' :''}}>
-            <a class="nav-link" href="#">Se connecter</a>
+            <a class="nav-link" href="#">
+            <span class="iconify" data-icon="bx:bxs-user-circle" data-inline="false"></span>
+            Se connecter</a>
         </li>
         <li class="nav-item" {{app.request.get('_route')== 'logout' ? 'active' :''}}>
-            <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Se déconnecter</a>
+            <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">
+            <span class="iconify" data-icon="clarity:sign-out-solid" data-inline="false"></span>
+            Se déconnecter</a>
         </li>
         </ul>
     

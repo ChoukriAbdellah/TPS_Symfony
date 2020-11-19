@@ -12,6 +12,9 @@ class ArticleType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
+           
+            ->add('Titre')
+            ->add('Description')
             ->add('imageFile', VichImageType::class, [
                 'label' => 'Image (PNG ou JPG)',
                 'required' => false,
@@ -23,8 +26,6 @@ class ArticleType extends AbstractType
                 'imagine_pattern' => 'carre',
                 'asset_helper' => true,
             ])
-            ->add('Titre')
-            ->add('Description')
         ;
     }
 

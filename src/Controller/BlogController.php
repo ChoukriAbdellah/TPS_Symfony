@@ -12,20 +12,32 @@ use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Entity\Article;
 use App\Form\ArticleType;
-
+use Knp\Component\Pager\PaginatorInterface;
 
 class BlogController extends AbstractController
 {
     
-    public function index(ArticleRepository $articleRepository): Response
+    public function index(EntityManagerInterface $em, PaginatorInterface $paginator, Request $request): Response
     {
      
-     $articles = $articleRepository->findBy([], ['dateCreation'=> 'DESC']) ;
+    //$donnees = $articleRepository->findBy([], ['dateCreation'=> 'DESC']) ;
 
-    // dd($articles);
-        return $this->render('blog/index.html.twig', 
-        compact('articles')            
-        );
+    $dql   = "SELECT a.id, a.titre,a.imageName, a.description from App:Article a";
+    $query = $em->createQuery($dql);
+
+    $pagination = $paginator->paginate(
+        $query, /* query NOT result */
+        $request->query->getInt('page', 1), /*page number*/
+        1 /*limit per page*/
+    );
+ 
+     // parameters to template
+     return $this->render('blog/index.html.twig', [
+        'pagination' => $pagination,
+    ]);
+
+   
+   
     }
     
     public function post(int $idPost ,ArticleRepository $articleRepository): Response

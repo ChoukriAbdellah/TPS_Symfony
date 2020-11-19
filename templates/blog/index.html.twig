@@ -8,8 +8,8 @@
 </style>
 
 <div class="example-wrapper">
-    <h1>Page d'accueil. ✅</h1>
-    <h2> {{ pluralize(articles|length, 'article','articles') }}  </h2>
+    <h1 class="text-center">Page d'accueil. ✅</h1>
+    <h2 class="text-center" > {{ pluralize(articles|length, 'article','articles') }}  </h2>
     
   
 
@@ -21,7 +21,8 @@
   |
     a continuer : filter les images pour avoir une taille standart imagine_filter('carre') 
   #}
-  <img class="rounded-lg md:w-56" src="{{ vich_uploader_asset(article )  
+  <img class="rounded-lg md:w-56" src="{{ vich_uploader_asset(article )  |
+                                           imagine_filter('carre')
                                            }}" alt="{{ article.titre }}" />
   </div>
   <div class="mt-4 md:mt-0 md:ml-6">

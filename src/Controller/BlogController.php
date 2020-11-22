@@ -13,7 +13,6 @@ use Doctrine\ORM\EntityManagerInterface;
 use App\Entity\Article;
 use App\Form\ArticleType;
 use Knp\Component\Pager\PaginatorInterface;
-
 class BlogController extends AbstractController
 {
     

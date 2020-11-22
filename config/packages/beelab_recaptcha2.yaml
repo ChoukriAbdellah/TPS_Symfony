@@ -1,0 +1,5 @@
+beelab_recaptcha2:
+    site_key: '6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI'
+    secret: '6LeIxAcTAAAAAGG-vFI1TnRWxMZNFuojJ4WifJWe'
+    enabled: false
+    request_method: curl_post

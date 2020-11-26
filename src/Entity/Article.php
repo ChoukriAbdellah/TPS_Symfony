@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
-
+use Symfony\Component\Serializer\Annotation\Groups;
 /**
  * @ORM\Entity(repositoryClass=ArticleRepository::class)
  * @ORM\Table(name="articles")
@@ -21,6 +21,7 @@ class Article
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     * @Groups({"post:read"})
      */
     private $id;
 
@@ -28,22 +29,26 @@ class Article
      * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank(message="Attention le titre ne pas etre vide.")
      * @Assert\Length(min=3,minMessage="Veuillez saisir un titre de 3 caracteres au minimum.")
+     * @Groups({"post:read"})
      */
     private $titre;
 
     /**
      * @ORM\Column(type="text")
      * @Assert\NotBlank
+     * @Groups({"post:read"})
      */
     private $description;
 
     /**
      * @ORM\Column(type="datetime", options= {"default":"CURRENT_TIMESTAMP"})
+     * @Groups({"post:read"}))
      */
     private $dateCreation;
 
     /**
      * @ORM\Column(type="datetime",  options= {"default":"CURRENT_TIMESTAMP"}))
+     * @Groups({"post:read"})
      */
     private $dateMAJ;
 

@@ -13,6 +13,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use App\Entity\Article;
 use App\Form\ArticleType;
 use Knp\Component\Pager\PaginatorInterface;
+use Symfony\Component\Security\Core\Security;
 class BlogController extends AbstractController
 {
     
@@ -21,13 +22,13 @@ class BlogController extends AbstractController
      
     //$donnees = $articleRepository->findBy([], ['dateCreation'=> 'DESC']) ;
 
-    $dql   = "SELECT a.id, a.titre,a.imageName, a.description from App:Article a";
+    $dql   = "SELECT a.id, a.titre, a.imageName , a.description, a.dateMAJ from App:Article a order by a.dateCreation desc ";
     $query = $em->createQuery($dql);
 
     $pagination = $paginator->paginate(
         $query, /* query NOT result */
         $request->query->getInt('page', 1), /*page number*/
-        1 /*limit per page*/
+        3 /*limit per page*/
     );
  
      // parameters to template
@@ -49,7 +50,8 @@ class BlogController extends AbstractController
     public function newPost(Request $request, EntityManagerInterface $em ): Response
     {
 
-        $form= $this->createForm(ArticleType::Class);
+        if ($this->getUser()) {
+            $form= $this->createForm(ArticleType::Class);
 
 
         $form->handleRequest($request);
@@ -59,15 +61,22 @@ class BlogController extends AbstractController
         $article =new Article;
         $article->setTitre($data->getTitre());
         $article->setDescription($data->getDescription());
+        $article->setUser($this->getUser());
         $em->persist($article);
         $em->flush();
         $this->addFlash('sucess', 'Article créé avec succès');
         return $this->redirectToRoute('index');
         }
-
         return $this->render('blog/newPost.html.twig', 
         ['form' => $form->createView()]
         );
+            
+        }
+        else {
+            $this->addFlash('danger', 'Vous devez vous connecter pour ajouter un article.');
+            return $this->redirectToRoute('app_register');
+        }
+        
     }
 
     public function editPost(int $idPost,Request $request, EntityManagerInterface $em,ArticleRepository $articleRepository ): Response

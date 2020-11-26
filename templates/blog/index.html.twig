@@ -5,15 +5,16 @@
 <style>
     .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
     .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+    
+</style>
 </style>
 
 <div class="example-wrapper">
-    <h1 class="text-center">Page d'accueil. ✅</h1>
-   {# <h2 class="text-center" > {{ pluralize(pagination.getTotalItemCount , 'article','articles') }}  </h2>
-    #}
-<div class="count">
-    {{ pagination.getTotalItemCount }}
-</div>
+    <h1 class="text-center">Page d'accueil.✅</h1>
+    <h2 class="text-center" > {{ pluralize(pagination.getTotalItemCount , 'article','articles') }}  </h2>
+    
+
+
 <table>
     <tr>
         {# sorting of properties based on query components #}
@@ -27,23 +28,41 @@
     </tr>
 
     {# table body #}
-    {% for article in pagination %}
-       <div class="md:flex">
-          <div class="md:flex-shrink-0">
-          {#
-          |/home/choukri/Bureau/Master2/S1/HMIN302 _E_application/Partie3/projet/blog/public/media/cache/carre/uploads/articles/chk-pdp-5fb59790b204b614795598.jpg
-            a continuer : filter les images pour avoir une taille standart imagine_filter('carre') 
-          #}
-          
-          <img class="rounded-lg md:w-56" src="{{ asset('media/cache/carre/uploads/articles/' ~ article.imageName) }}"/>
-          </div>
-          <div class="mt-4 md:mt-0 md:ml-6">
-            <div class="uppercase tracking-wide text-sm text-indigo-600 font-bold">
-            <a href="{{path('post', {idPost:article.id}) }}">{{article.titre}} <a/>
+    {% for row in pagination | batch(3) %}
+             <div class="container">
+             <div class="row">
+                        {% for article in row  %}
+                            <div class="col-md-4">
+                                <div class="md:flex-shrink-0">
+                                {#
+                                |/home/choukri/Bureau/Master2/S1/HMIN302 _E_application/Partie3/projet/blog/public/media/cache/carre/uploads/articles/chk-pdp-5fb59790b204b614795598.jpg
+                                    a continuer : filter les images pour avoir une taille standart imagine_filter('carre') 
+                                #}
+                                
+                                <img class="rounded-lg md:w-56" src="{{ asset('media/cache/carre/uploads/articles/' ~ article.imageName) }}"
+                                 class="doc-item " alt="Responsive image"/>
+                                </div>
+                                <div class="mt-4 md:mt-0 md:ml-6">
+                                    <div class="uppercase tracking-wide text-sm text-indigo-600 font-bold">
+                                    <a href="{{path('post', {idPost:article.id}) }}">{{article.titre}} <a/>
+                                    </div>
+                                    <p class="mt-2 mt-3 text-secondary">Dernière mise à jour : {{article.dateMAJ | date("m/d/Y")  }} </p>
+                                </div>
+                                {% if is_granted("ROLE_ADMIN") %}
+                                    <a href="#" class="mb-2  ml-2 btn btn-danger" 
+                                    onclick="event.preventDefault(); confirm('Supprimer ce post ?') &&
+                                     document.getElementById('form-id-{{article.id}}').submit();">
+                                     Supprimer<a/>      
+                                    <form id ="form-id-{{article.id}}" action="{{path('deletePost', {idPost:article.id}) }}" method="post" style="display">
+                                        <input type="hidden" method="_method"  value="DELETE"/>
+                                        </div>
+                                    </form>
+                                {% endif %}
+
+                               
+                        {% endfor %}
             </div>
-            <p class="mt-2 text-gray-600">{{article.description}}</p>
-          </div>
-        </div>
+            </div>
     {% endfor %}
 </table>
 {# display navigation #}

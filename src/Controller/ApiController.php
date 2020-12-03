@@ -12,6 +12,7 @@ class ApiController extends AbstractController
 {
     /**
      * @Route("/api", name="api", methods={"GET"})
+     * 
      */
     public function index(ArticleRepository $articleRepository ,SerializerInterface $serializer): Response
     {

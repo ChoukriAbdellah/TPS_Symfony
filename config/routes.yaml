@@ -1,6 +1,12 @@
 index:
     path: /
     controller: App\Controller\BlogController::index
+    methods: [GET,POST,DELETE]
+
+api:
+    path: /api
+    controller: App\Controller\ApiController::api
+    methods: [GET,POST,DELETE]
 
 
 post:

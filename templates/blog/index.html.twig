@@ -15,17 +15,20 @@
     
 
 
+
 <table>
     <tr>
         {# sorting of properties based on query components #}
-        <th>{{ knp_pagination_sortable(pagination, 'Id', 'a.id') }}</th>
+        <th>
+            {{ knp_pagination_sortable(pagination, 'Id', 'a.id') }}
+        </th>
         <th{% if pagination.isSorted('a.titre') %} class="sorted"{% endif %}>
+            
             {{ knp_pagination_sortable(pagination, 'Title', 'a.titre') }}
         </th>
-        <th{% if pagination.isSorted(['a.date', 'a.time']) %} class="sorted"{% endif %}>
-            {{ knp_pagination_sortable(pagination, 'Release', ['a.date', 'a.time']) }}
-        </th>
+       
     </tr>
+
 
     {# table body #}
     {% for row in pagination | batch(3) %}
@@ -59,7 +62,7 @@
                                     </form>
                                 {% endif %}
 
-                               
+                               </div>
                         {% endfor %}
             </div>
             </div>

@@ -1,7 +1,13 @@
+
+indexAPI:
+    path: /
+    controller: App\Controller\ApiController::index
+    methods: [GET,POST,DELETE]
 index:
     path: /
     controller: App\Controller\BlogController::index
     methods: [GET,POST,DELETE]
+
 
 api:
     path: /api
@@ -23,6 +29,7 @@ editPost:
     path: /editPost/{idPost<[0-9]+>}
     controller: App\Controller\BlogController::editPost
     methods: [POST, GET]
+
 deletePost:
     path: /deletePost/{idPost<[0-9]+>}
     controller: App\Controller\BlogController::deletePost

@@ -35,13 +35,21 @@ class ApiController extends AbstractController
         return $response;
     }
 
-    public function index(EntityManagerInterface $em, ArticleRepository $articleRepository, Request $request): Response
+    public function index(EntityManagerInterface $em, PaginatorInterface $paginator, Request $request): Response
     {
      
-    $donnees = $articleRepository->findBy([], ['dateCreation'=> 'DESC']) ;
-    // parameters to template
-    return $this->render('blog/index2.html.twig', [
-        'articles' => $donnees,
-    ]);
+        $dql   = "SELECT a.id, a.titre, a.imageName , a.description, a.dateMAJ from App:Article a order by a.dateCreation desc ";
+        $query = $em->createQuery($dql);
+    
+        $pagination = $paginator->paginate(
+            $query, /* query NOT result */
+            $request->query->getInt('page', 1), /*page number*/
+            3 /*limit per page*/
+        );
+     
+         // parameters to template
+         return $this->render('blog/index2.html.twig', [
+            'pagination' => $pagination,
+        ]);
 }
 }

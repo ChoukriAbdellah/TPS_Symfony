@@ -28,3 +28,5 @@ deletePost:
     controller: App\Controller\BlogController::deletePost
     methods: [GET,POST,DELETE]
         
+
+ 

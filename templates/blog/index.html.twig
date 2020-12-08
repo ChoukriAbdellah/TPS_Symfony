@@ -38,12 +38,24 @@
                             <div class="col-md-4">
                                 <div class="md:flex-shrink-0">
                                 {#
+                                public/uploads/articles/coding-computer-science-5fb67036c1cfe266148679.jpg
                                 |/home/choukri/Bureau/Master2/S1/HMIN302 _E_application/Partie3/projet/blog/public/media/cache/carre/uploads/articles/chk-pdp-5fb59790b204b614795598.jpg
                                     a continuer : filter les images pour avoir une taille standart imagine_filter('carre') 
                                 #}
                                 
-                                <img class="rounded-lg md:w-56" src="{{ asset('media/cache/carre/uploads/articles/' ~ article.imageName) }}"
-                                 class="doc-item " alt="Responsive image"/>
+                                {% if article.imageName %}
+                                <img class="rounded-lg md:w-56" 
+                                src="{{ vich_uploader_asset(article, 'imageFile', 'App\\Entity\\Article') |
+                                imagine_filter('carre')
+                                }}"
+                                class="doc-item " alt="Responsive image"/>
+                                {% else %}
+                                <img class="rounded-lg md:w-56" 
+                                src="{{ asset('uploads/articles/new.jpg') |
+                                imagine_filter('carre') }}"
+                                class="doc-item " alt="Responsive image"/>
+                                {% endif %}
+                                 
                                 </div>
                                 <div class="mt-4 md:mt-0 md:ml-6">
                                     <div class="uppercase tracking-wide text-sm text-indigo-600 font-bold">

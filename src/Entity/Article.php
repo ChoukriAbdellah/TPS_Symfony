@@ -52,6 +52,11 @@ class Article
      * @Groups({"post:read"})
      */
     private $dateMAJ;
+    /**
+     * @var string|null
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $imageName;
 
      /**
      * NOTE: This is not a mapped field of entity metadata, just a simple property.
@@ -62,10 +67,7 @@ class Article
      */
     private $imageFile;
 
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $imageName;
+    
 
     /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="articles")

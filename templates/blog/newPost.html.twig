@@ -11,9 +11,12 @@
 <div class="example-wrapper mx-auto" >
     <h1 class="text-center" >Créer un nouvel article</h1>
    {{ form_start(form) }}
+   {{ form_start(form) }}
    {{ form_widget(form) }}
-    <button type="submit" value="Créer" class="btn-block btn-dark">Créer</button>
+    <input type ="submit" value="Créer" class="btn btn-primary btn-block"> </input>
    {{ form_end(form) }}
+
+    
 
 </div>
 {% endblock %}

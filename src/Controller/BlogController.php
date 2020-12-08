@@ -58,10 +58,13 @@ class BlogController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
         
         $data = $form->getData();
+        
         $article =new Article;
         $article->setTitre($data->getTitre());
         $article->setDescription($data->getDescription());
         $article->setUser($this->getUser());
+        $article->setImageFile($data->getImageFile());
+        
         $em->persist($article);
         $em->flush();
         $this->addFlash('sucess', 'Article créé avec succès');

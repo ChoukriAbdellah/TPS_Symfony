@@ -24,11 +24,8 @@ class ArticleType extends AbstractType
                 'label' => 'Image (PNG ou JPG)',
                 'required' => false,
                 'allow_delete' => true,
-                'delete_label' => 'Supprimer',
-                'download_label' => 'Télécharger',
                 'download_uri' => true,
                 'image_uri' => true,
-                'imagine_pattern' => 'carre',
                 'asset_helper' => true,
             ])
             ->add('captcha', RecaptchaType::class, [
@@ -39,6 +36,7 @@ class ArticleType extends AbstractType
             ])
         ;
     }
+    
 
     public function configureOptions(OptionsResolver $resolver)
     {

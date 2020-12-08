@@ -15,7 +15,18 @@
 
 
 
-
+<table>
+    <tr>
+        {# sorting of properties based on query components #}
+        <th>
+            {{ knp_pagination_sortable(pagination, 'Id', 'a.id') }}
+        </th>
+        <th{% if pagination.isSorted('a.titre') %} class="sorted"{% endif %}>
+            
+            {{ knp_pagination_sortable(pagination, 'Title', 'a.titre') }}
+        </th>
+       
+    </tr>
 
 
     {# table body #}
@@ -24,7 +35,11 @@
            
           
     {% endfor %}
-
+</table>
+{# display navigation #}
+<div class="navigation">
+    {{ knp_pagination_render(pagination) }}
+</div>
 {# display navigation #}
 
 {% endblock %}

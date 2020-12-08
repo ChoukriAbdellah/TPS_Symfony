@@ -1,6 +1,6 @@
 
 indexAPI:
-    path: /
+    path: /api-index
     controller: App\Controller\ApiController::index
     methods: [GET,POST,DELETE]
 index:

@@ -1,5 +1,5 @@
 index:
-    path: /
+    path: /index
     controller: App\Controller\BlogController::index
     methods: [GET,POST,DELETE]
 

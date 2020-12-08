@@ -8,8 +8,6 @@ use Symfony\Component\Routing\Annotation\Route;
 use App\Repository\ArticleRepository;
 use Symfony\Component\Serializer\SerializerInterface;
 
-
-
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\ORM\EntityManagerInterface;
 use Knp\Component\Pager\PaginatorInterface;
@@ -37,25 +35,13 @@ class ApiController extends AbstractController
         return $response;
     }
 
-    public function index(EntityManagerInterface $em, PaginatorInterface $paginator, Request $request): Response
+    public function index(EntityManagerInterface $em, ArticleRepository $articleRepository, Request $request): Response
     {
      
-    //$donnees = $articleRepository->findBy([], ['dateCreation'=> 'DESC']) ;
-    $dql   = "SELECT a.id, a.titre, a.imageName , a.description, a.dateMAJ from App:Article a order by a.dateCreation desc ";
-    $query = $em->createQuery($dql);
-
-    $pagination = $paginator->paginate(
-        $query, /* query NOT result */
-        $request->query->getInt('page', 1), /*page number*/
-        3 /*limit per page*/
-    );
- 
-
-    $response = new Response(
-        'Content',
-        Response::HTTP_OK,
-        ['content-type' => 'text/html']
-    );
-    return $response;
+    $donnees = $articleRepository->findBy([], ['dateCreation'=> 'DESC']) ;
+    // parameters to template
+    return $this->render('blog/index2.html.twig', [
+        'articles' => $donnees,
+    ]);
 }
 }

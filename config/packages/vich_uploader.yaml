@@ -3,7 +3,7 @@ vich_uploader:
 
     mappings:
         article_image:
-            uri_prefix: /uploads/articles
-            upload_destination: '%kernel.project_dir%/public/media/cache/carre/uploads/articles'
+            uri_prefix: /assets/img
+            upload_destination: '%kernel.project_dir%/public/assets/img'
             namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
             

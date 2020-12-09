@@ -45,8 +45,7 @@
                                 
                                 {% if article.imageName %}
                                 <img class="rounded-lg md:w-56" 
-                                src="{{ vich_uploader_asset(article, 'imageFile', 'App\\Entity\\Article') |
-                                imagine_filter('carre')
+                                src="{{ vich_uploader_asset(article, 'imageFile', 'App\\Entity\\Article') 
                                 }}"
                                 class="doc-item " alt="Responsive image"/>
                                 {% else %}
@@ -60,7 +59,7 @@
                                     <div class="uppercase tracking-wide text-sm text-indigo-600 font-bold">
                                     <a href="{{path('post', {idPost:article.id}) }}">{{article.titre}} <a/>
                                     </div>
-                                    <p class="mt-2 mt-3 text-secondary">Dernière mise à jour : {{article.dateMAJ | date("m/d/Y")  }} </p>
+                                    <p class="mt-2 mt-3 text-secondary"> {{article.dateMAJ | date("d/m/Y")  }} </p>
                                 </div>
                                 {% if is_granted("ROLE_ADMIN") %}
                                     <a href="#" class="mb-2  ml-2 btn btn-danger" 

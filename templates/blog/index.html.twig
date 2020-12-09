@@ -45,12 +45,13 @@
                                 
                                 {% if article.imageName %}
                                 <img class="rounded-lg md:w-56" 
-                                src="{{ vich_uploader_asset(article, 'imageFile', 'App\\Entity\\Article') 
+                                src="{{ vich_uploader_asset(article, 'imageFile', 'App\\Entity\\Article') |
+                                imagine_filter('carre')
                                 }}"
                                 class="doc-item " alt="Responsive image"/>
                                 {% else %}
                                 <img class="rounded-lg md:w-56" 
-                                src="https://www.rethinkdata.net/wp-content/uploads/2018/09/New-Image.png"
+                                src="{{ asset('media/cache/resolve/carre/uploads/articles/new.jpg')  }}"
                                 class="doc-item " alt="Responsive image"/>
                                 {% endif %}
                                  

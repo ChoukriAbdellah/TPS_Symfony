@@ -1,8 +1,6 @@
 # Blog Symfony 
 
-[ToC] 
- 
- 
+
  Projet réalisé dans le cadre de l'UE HMIN302 afin de comprendre les principes de fonctionnement du framework Symfony![](https://i.imgur.com/QA5ghoL.png) et ![](https://i.imgur.com/IjdTjb6.png) pour le backend.
  
  
@@ -18,9 +16,8 @@
 ```sql=
 start blog_dev.sql
 ```
-:::warning
-:warning: Le système de gestion de base de donnée utilisé pour ce projet est Mysql disponible dans  pile logicielle   [LAMP](https://www.grid5000.fr/w/Getting_Started).
-:::
+######  Le système de gestion de base de donnée utilisé pour ce projet est Mysql disponible dans  pile logicielle   [LAMP](https://www.grid5000.fr/w/Getting_Started).
+
 
 **2-Importer le projet depuis github**![](https://i.imgur.com/X1ChC5H.png)
 
@@ -41,8 +38,7 @@ L'application symfony ainsi que la base de données sont hébergés sur la plate
 
 ![](https://i.imgur.com/PYJRESL.png)
 
-:::danger
->:warning: L'application est toujour en cours de développement! [color=#CD5C5C]
- :::
 
+>:warning: L'application est toujour en cours de développement! [color=#CD5C5C]
+ 
 

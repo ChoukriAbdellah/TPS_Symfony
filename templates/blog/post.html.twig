@@ -9,40 +9,34 @@
 </style>
 
 <div class="example-wrapper">
-    <h1>Post number  {{ idPost }} ✅</h1>
    
 
-    <h3>informations about this post.:<h3>
-    <p><img >
-Lorem ipsum dolor sit amet, consectetur adipiscing elit.
- Phasellus imperdiet, nulla et dictum interdum, nisi 
- lorem egestas odio, vitae scelerisque enim ligula 
- venenatis dolor. Maecenas nisl est, ultrices nec congue
-  eget, auctor vitae massa. Fusce luctus vestibulum augue ut aliquet
-  </p>
-   <p><img >
-Lorem ipsum dolor sit amet, consectetur adipiscing elit.
- Phasellus imperdiet, nulla et dictum interdum, nisi 
- lorem egestas odio, vitae scelerisque enim ligula 
- venenatis dolor. Maecenas nisl est, ultrices nec congue
-  eget, auctor vitae massa. Fusce luctus vestibulum augue ut aliquet
-  </p>
-     <p><img >
-Lorem ipsum dolor sit amet, consectetur adipiscing elit.
- Phasellus imperdiet, nulla et dictum interdum, nisi 
- lorem egestas odio, vitae scelerisque enim ligula 
- venenatis dolor. Maecenas nisl est, ultrices nec congue
-  eget, auctor vitae massa. Fusce luctus vestibulum augue ut aliquet
-  </p>
-     <p><img >
-Lorem ipsum dolor sit amet, consectetur adipiscing elit.
- Phasellus imperdiet, nulla et dictum interdum, nisi 
- lorem egestas odio, vitae scelerisque enim ligula 
- venenatis dolor. Maecenas nisl est, ultrices nec congue
-  eget, auctor vitae massa. Fusce luctus vestibulum augue ut aliquet
-  </p>
-      <a href="{{path('editPost', {idPost:article.id}) }}">Modifier<a/>
-      <a href="#" onclick="event.preventDefault(); confirm('Supprimer ce post ?') &&
+  
+
+
+     <section class="jumbotron text-center">
+    <div class="row container">
+      <h1>{{ article.titre }}</h1>
+      {% if article.imageName %}
+
+       <img class="rounded-lg md:w-56" 
+        src="{{ vich_uploader_asset(article, 'imageFile', 'App\\Entity\\Article') |
+        imagine_filter('carre') }}"
+        class="doc-item " alt="Responsive image"/>
+                                
+       {% else %}
+
+       <img class="rounded-lg md:w-56" 
+       src="https://fontstand.com/assets/Uploads/Foundry/36/Aa/_resampled/SetWidth200200-Harriet-Text-Light-Aa-e894207dac8fa1c6bc7a89d18aeba658.png"
+       class="doc-item " alt="Responsive image"/>
+       {% endif %}
+      <p class="lead text-muted">
+      {{ article.description}}</p>
+      
+    </div>
+  </section>
+      <a class="btn btn-primary my-2" href="{{path('editPost', {idPost:article.id}) }}">Modifier<a/>
+      <a class="btn btn-danger my-2" href="#" onclick="event.preventDefault(); confirm('Supprimer ce post ?') &&
          document.getElementById('form-id').submit();">Supprimer<a/>      
         <form id ="form-id" action="{{path('deletePost', {idPost:article.id}) }}" method="post" style="display">
         <input type="hidden" method="_method"  value="DELETE"/>

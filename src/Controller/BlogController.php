@@ -28,8 +28,14 @@ class BlogController extends AbstractController
     $pagination = $paginator->paginate(
         $query, /* query NOT result */
         $request->query->getInt('page', 1), /*page number*/
-        3 /*limit per page*/
+        6 /*limit per page*/
     );
+    $pagination->setCustomParameters([
+        'align' => 'center',
+        'size' => 'medium',
+        'rounded' => true,
+        
+    ]);
  
      // parameters to template
      return $this->render('blog/index.html.twig', [

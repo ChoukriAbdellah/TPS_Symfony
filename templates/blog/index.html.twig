@@ -17,17 +17,7 @@
 
 
 <table>
-    <tr>
-        {# sorting of properties based on query components #}
-        <th>
-            {{ knp_pagination_sortable(pagination, 'Id', 'a.id') }}
-        </th>
-        <th{% if pagination.isSorted('a.titre') %} class="sorted"{% endif %}>
-            
-            {{ knp_pagination_sortable(pagination, 'Title', 'a.titre') }}
-        </th>
-       
-    </tr>
+   
 
 
     {# table body #}
@@ -44,24 +34,32 @@
                                 #}
                                 
                                 {% if article.imageName %}
+
                                 <img class="rounded-lg md:w-56" 
                                 src="{{ vich_uploader_asset(article, 'imageFile', 'App\\Entity\\Article') |
                                 imagine_filter('carre')
                                 }}"
                                 class="doc-item " alt="Responsive image"/>
+                                
                                 {% else %}
+
                                 <img class="rounded-lg md:w-56" 
                                 src="https://fontstand.com/assets/Uploads/Foundry/36/Aa/_resampled/SetWidth200200-Harriet-Text-Light-Aa-e894207dac8fa1c6bc7a89d18aeba658.png"
                                 class="doc-item " alt="Responsive image"/>
+
                                 {% endif %}
                                  
                                 </div>
-                                <div class="mt-4 md:mt-0 md:ml-6">
+                                <div class=" md:mt-0 md:ml-6">
                                     <div class="uppercase tracking-wide text-sm text-indigo-600 font-bold">
-                                    <a href="{{path('post', {idPost:article.id}) }}">{{article.titre}} <a/>
+                                    <h2>{{ article.titre}}</h2>
                                     </div>
                                     <p class="mt-2 mt-3 text-secondary"> {{article.dateMAJ | date("d/m/Y")  }} </p>
+                                    <p>
+                                    <a class="btn btn-secondary" href="{{path('post', {idPost:article.id}) }}" role="button">Lire l'article &raquo;</a>
+                                    </p>
                                 </div>
+                                
                                 {% if is_granted("ROLE_ADMIN") %}
                                     <a href="#" class="mb-2  ml-2 btn btn-danger" 
                                     onclick="event.preventDefault(); confirm('Supprimer ce post ?') &&
@@ -79,6 +77,7 @@
             </div>
     {% endfor %}
 </table>
+
 {# display navigation #}
 <div class="navigation">
     {{ knp_pagination_render(pagination) }}

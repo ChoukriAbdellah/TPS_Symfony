@@ -32,7 +32,7 @@ class BlogController extends AbstractController
     );
  
      // parameters to template
-     return $this->render('blog/index2.html.twig', [
+     return $this->render('blog/index.html.twig', [
         'pagination' => $pagination,
     ]);
 

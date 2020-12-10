@@ -13,7 +13,7 @@
 
 
 **1-Importer la base de donnée**
-```sql=
+```sql
 start blog_dev.sql
 ```
 ######  Le système de gestion de base de donnée utilisé pour ce projet est Mysql disponible dans  pile logicielle   [LAMP](https://www.grid5000.fr/w/Getting_Started).
@@ -21,7 +21,7 @@ start blog_dev.sql
 
 **2-Importer le projet depuis github**![](https://i.imgur.com/X1ChC5H.png)
 
-```bash=
+```bash
 git clone https://github.com/ChoukriAbdellah/TPS_Symfony.git
 cd TPS_Symfony
 alias sss="symfony server:start"

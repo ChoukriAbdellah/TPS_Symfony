@@ -39,18 +39,7 @@ class BlogController extends AbstractController
 
      }
 
-       public function index2(EntityManagerInterface $em, PaginatorInterface $paginator, Request $request): Response
-    {
-     
-    //$donnees = $articleRepository->findBy([], ['dateCreation'=> 'DESC']) ;
     
- 
-     // parameters to template
-     return $this->render('blog/index2.html.twig');
-
-   
-   
-    }
     public function post(int $idPost ,ArticleRepository $articleRepository): Response
     {
         $article = $articleRepository->find($idPost) ;

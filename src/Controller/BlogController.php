@@ -43,7 +43,6 @@ class BlogController extends AbstractController
     {
      
     //$donnees = $articleRepository->findBy([], ['dateCreation'=> 'DESC']) ;
-
     
  
      // parameters to template

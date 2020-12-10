@@ -4,8 +4,8 @@ index:
     controller: App\Controller\BlogController::index
     methods: [GET,POST,DELETE]
 
- index2:
-    path: /index2
+ indextest:
+    path: /test
     controller: App\Controller\BlogController::index2
     methods: [GET,POST,DELETE]   
 

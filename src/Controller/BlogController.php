@@ -70,7 +70,7 @@ class BlogController extends AbstractController
         $article->setDescription($data->getDescription());
         $article->setUser($this->getUser());
         $article->setImageFile($data->getImageFile());
-        $article->setDataMaj(new \DateTimeImmutable );
+        $article->setDateMaj(new \DateTimeImmutable );
         $em->persist($article);
         $em->flush();
         $this->addFlash('success', 'Article créé avec succès');

@@ -92,7 +92,7 @@ class BlogController extends AbstractController
     {
         $article = $articleRepository->find($idPost) ;
         
-        $form= $this->createForm(ArticleType::Class);
+        $form= $this->createForm(ArticleType::Class, $article);
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {

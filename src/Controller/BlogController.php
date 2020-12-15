@@ -91,8 +91,8 @@ class BlogController extends AbstractController
     public function editPost(int $idPost,Request $request, EntityManagerInterface $em,ArticleRepository $articleRepository ): Response
     {
         $article = $articleRepository->find($idPost) ;
-
-        $form= $this->createForm(ArticleType::Class, $article);
+        
+        $form= $this->createForm(ArticleType::Class);
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {

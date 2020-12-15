@@ -50,8 +50,7 @@
                                 {% if article.imageName %}
 
                                 <img class="rounded-lg md:w-56" 
-                                src="{{ vich_uploader_asset(article, 'imageFile', 'App\\Entity\\Article') |
-                                imagine_filter('carre')
+                                src="{{ vich_uploader_asset(article, 'imageFile', 'App\\Entity\\Article') 
                                 }}"
                                 class="doc-item " alt="Responsive image"/>
                                 

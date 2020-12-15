@@ -23,8 +23,8 @@ class ArticleType extends AbstractType
             ->add('imageFile', VichImageType::class, [
                 'label' => 'Image (PNG ou JPG)',
                 'required' => false,
-                'allow_delete' => true,
-                'download_uri' => true,
+                'allow_delete' => false,
+                'download_uri' => false,
                 'image_uri' => true,
                 'asset_helper' => true,
             ])

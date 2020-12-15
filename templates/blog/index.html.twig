@@ -8,21 +8,7 @@
     
 
 </style>
-<header class="masthead" style="background-image: url('img/home-bg.jpg')">
-  <div class="overlay"></div>
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-8 col-md-10 mx-auto">
-        <div class="site-heading">
-          <h1>Blog</h1>
-          <span class="subheading">Cupcake ipsum dolor sit amet tootsie roll. I love cake powder. Gummi bears cookie
-            liquorice apple pie.</span>
-            <a href="https://github.com/nbr-23/cryptex" class="btn btn-primary bouton" target="_blank">code on github</a>
-        </div>
-      </div>
-    </div>
-  </div>
-</header>
+
 <div class="example-wrapper">
     <h1 class="text-center">Page d'accueil.✅</h1>
     <h2 class="text-center" > {{ pluralize(pagination.getTotalItemCount , 'article','articles') }}  </h2>
@@ -50,9 +36,10 @@
                                 {% if article.imageName %}
 
                                 <img class="rounded-lg md:w-56" 
-                                src="{{ vich_uploader_asset(article, 'imageFile', 'App\\Entity\\Article') 
+                                src="{{ vich_uploader_asset(article, 'imageFile', 'App\\Entity\\Article') |
+                                imagine_filter('carre')
                                 }}"
-                                class="doc-item " alt="Responsive image"/>
+                                class="doc-item "/>
                                 
                                 {% else %}
 

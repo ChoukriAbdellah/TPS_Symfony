@@ -70,10 +70,10 @@ class BlogController extends AbstractController
         $article->setDescription($data->getDescription());
         $article->setUser($this->getUser());
         $article->setImageFile($data->getImageFile());
-        
+        $article->setDataMaj(new \DateTimeImmutable );
         $em->persist($article);
         $em->flush();
-        $this->addFlash('sucess', 'Article créé avec succès');
+        $this->addFlash('success', 'Article créé avec succès');
         return $this->redirectToRoute('index');
         }
         return $this->render('blog/newPost.html.twig', 
@@ -100,7 +100,7 @@ class BlogController extends AbstractController
             $article->setTitre($data->getTitre());
             $article->setDescription($data->getDescription());
             $em->flush();
-            $this->addFlash('sucess', 'Article modifié avec succès');
+            $this->addFlash('success', 'Article modifié avec succès');
             return $this->redirectToRoute('index');
         }
         return $this->render('blog/editPost.html.twig', 
@@ -118,7 +118,7 @@ class BlogController extends AbstractController
 
         $em->remove($article);
         $em->flush();
-        $this->addFlash('sucess', 'Article supprimé avec succès');
+        $this->addFlash('success', 'Article supprimé avec succès');
 
         return $this->redirectToRoute('index');
     }

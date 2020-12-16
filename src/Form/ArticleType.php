@@ -8,25 +8,23 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Vich\UploaderBundle\Form\Type\VichImageType;
 use Beelab\Recaptcha2Bundle\Validator\Constraints\Recaptcha2;
-
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Beelab\Recaptcha2Bundle\Form\Type\RecaptchaType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 
 class ArticleType extends AbstractType
 {
-    public function buildForm(FormBuilderInterface $builder, array $options)
+    public function buildForm(FormBuilderInterface $builder, array $options )
     {
         $builder
            
             ->add('Titre')
             ->add('Description')
-            ->add('imageFile', VichImageType::class, [
-                'label' => 'Image (PNG ou JPG)',
-                'required' => false,
-                'allow_delete' => false,
-                'download_uri' => false,
-                'image_uri' => true,
-                'asset_helper' => true,
+            ->add('images', FileType::class, [
+                'label' => 'Ajouter une image',
+                'multiple' => true,
+                'mapped' => false,
+                'required' => false
             ])
             ->add('captcha', RecaptchaType::class, [
                 // You can use RecaptchaSubmitType

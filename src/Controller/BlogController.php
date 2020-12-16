@@ -77,8 +77,7 @@ class BlogController extends AbstractController
         $article->setImageFile($data->getImageFile());
         $article->setDateMaj(new \DateTimeImmutable );
         //
-        $image = $form->get('images')->getData();
-
+        $images = $form->get('images')->getData();
         // On boucle sur les images
         foreach($images as $image){
             // On génère un nouveau nom de fichier

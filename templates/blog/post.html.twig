@@ -64,12 +64,17 @@
         #}
         {% for item in article.images %}
             <div class="carousel-item {{ loop.first ? 'active': '' }} ">
-            <img src="{{ asset('/assets/images/' ~ item.name)  |
-                                            imagine_filter('carre') }}" alt="Image" >   
-                  <div class="carousel-caption d-none d-md-block bg-primary text-white">
+            <div class="d-flex justify-content-center">
+            <div>      
+              <img src="{{ asset('/assets/images/' ~ item.name)  |
+                                            imagine_filter('moyen') }}" alt="Image" > 
+          </div>
+          </div>
+              
+                  {# <div class="carousel-caption d-none d-md-block bg-primary text-white">
                     <h5 class="text-"> {{  article.titre }}</h5>
                     <p >{{  article.id| slice(0,100)}} </p>
-                </div>
+                </div> #}
             </div>
         {% endfor %}
 
@@ -89,20 +94,12 @@
    
   
       <div >
-{% if article.imageName %}
 
-       <img class="rounded-lg md:w-56" 
-        src="{{ vich_uploader_asset(article, 'imageFile', 'App\\Entity\\Article') |
-        imagine_filter('carre') }}"
-        class="doc-item " alt="Responsive image"/>
-        
-                                
-       {% else %}
 
        <img class="rounded-lg md:w-56" 
        src="https://fontstand.com/assets/Uploads/Foundry/36/Aa/_resampled/SetWidth200200-Harriet-Text-Light-Aa-e894207dac8fa1c6bc7a89d18aeba658.png"
        class="doc-item " alt="Responsive image"/>
-       {% endif %}
+       
         <h2>{{ article.titre }}</h2>
         <p>{{ article.description}}</p>
       </div><!-- /.col-lg-4 -->

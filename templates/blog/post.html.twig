@@ -97,7 +97,7 @@
       </div><!-- /.col-lg-4 -->
       <div class="d-flex justify-content-center">
    <div> 
-   {% if userId == article.user.id %}   
+     {% if  (userId != -1) and userId == article.user %}
     <a class="btn btn-primary my-2" href="{{path('editPost', {idPost:article.id}) }}">Modifier<a/>
       <a class="btn btn-danger my-2" href="#" onclick="event.preventDefault(); confirm('Supprimer ce post ?') &&
          document.getElementById('form-id').submit();">Supprimer<a/>      

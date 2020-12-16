@@ -57,7 +57,7 @@
                                     </p>
                                 </div>
                                 
-                                {% if userId == article.user %}
+                                {% if  (userId != -1) and userId == article.user %}
                                             <a href="#" class="mb-2  ml-2 btn btn-danger" 
                                             onclick="event.preventDefault(); confirm('Supprimer ce post ?') &&
                                             document.getElementById('form-id-{{article.id}}').submit();">

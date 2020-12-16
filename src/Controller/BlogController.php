@@ -21,10 +21,17 @@ class BlogController extends AbstractController
     
     public function index(Security $security,EntityManagerInterface $em, PaginatorInterface $paginator, Request $request): Response
     {
-     
+     //check if user is connect
+     $user = $security->getUser();
+     if($user){
+        $userId= $user->getID();
+     }
+     else
+     {
+        $userId= -1;
+     }
     //current user
-    $user = $security->getUser();
-    $userId= $user->getID();
+    
     $dql   = "SELECT  a.id, a.titre, a.imageName , a.description,a.imageName, a.dateMAJ , IDENTITY(a.user) as user from App:Article a order by a.dateCreation desc ";
     $query = $em->createQuery($dql);
 

@@ -36,12 +36,14 @@
 
                                 
                                 
-                               
-
+                               {% if article.imageName  %}
+                                <img src="{{ asset('/assets/images/' ~ article.imageName)  |
+                                imagine_filter('carre') }}" alt="Image" >
+                                {% else %}
                                 <img class="rounded-lg md:w-56" 
                                 src="https://fontstand.com/assets/Uploads/Foundry/36/Aa/_resampled/SetWidth200200-Harriet-Text-Light-Aa-e894207dac8fa1c6bc7a89d18aeba658.png"
                                 class="doc-item " alt="Responsive image"/>
-
+                                {% endif %}
                                 
                                  
                                 </div>
@@ -55,19 +57,21 @@
                                     </p>
                                 </div>
                                 
-                                {% if is_granted("ROLE_ADMIN") %}
-                                    <a href="#" class="mb-2  ml-2 btn btn-danger" 
-                                    onclick="event.preventDefault(); confirm('Supprimer ce post ?') &&
-                                     document.getElementById('form-id-{{article.id}}').submit();">
-                                     Supprimer<a/>      
-                                    <form id ="form-id-{{article.id}}" action="{{path('deletePost', {idPost:article.id}) }}" method="post" style="display">
-                                        <input type="hidden" method="_method"  value="DELETE"/>
-                                        </div>
+                                {% if userId == article.user %}
+                                            <a href="#" class="mb-2  ml-2 btn btn-danger" 
+                                            onclick="event.preventDefault(); confirm('Supprimer ce post ?') &&
+                                            document.getElementById('form-id-{{article.id}}').submit();">
+                                            Supprimer<a/>      
+                                            <form id ="form-id-{{article.id}}" action="{{path('deletePost', {idPost:article.id}) }}" method="post" style="display">
+                                                <input type="hidden" method="_method"  value="DELETE"/>
+                                        
                                     </form>
+                                    
                                 {% endif %}
 
                                </div>
                         {% endfor %}
+                        </div>
             </div>
             </div>
     {% endfor %}

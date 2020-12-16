@@ -19,12 +19,13 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 class BlogController extends AbstractController
 {
     
-    public function index(EntityManagerInterface $em, PaginatorInterface $paginator, Request $request): Response
+    public function index(Security $security,EntityManagerInterface $em, PaginatorInterface $paginator, Request $request): Response
     {
      
-    //$donnees = $articleRepository->findBy([], ['dateCreation'=> 'DESC']) ;
-
-    $dql   = "SELECT a.id, a.titre, a.imageName , a.description, a.dateMAJ from App:Article a order by a.dateCreation desc ";
+    //current user
+    $user = $security->getUser();
+    $userId= $user->getID();
+    $dql   = "SELECT  a.id, a.titre, a.imageName , a.description,a.imageName, a.dateMAJ , IDENTITY(a.user) as user from App:Article a order by a.dateCreation desc ";
     $query = $em->createQuery($dql);
 
     $pagination = $paginator->paginate(
@@ -42,17 +43,21 @@ class BlogController extends AbstractController
      // parameters to template
      return $this->render('blog/index.html.twig', [
         'pagination' => $pagination,
+        'userId' => $userId
     ]);
 
 
      }
 
     
-    public function post(int $idPost ,ArticleRepository $articleRepository): Response
+    public function post(Security $security,int $idPost ,ArticleRepository $articleRepository): Response
     {
+        $user = $security->getUser();
+        $userId= $user->getID();
+
         $article = $articleRepository->find($idPost) ;
         return $this->render('blog/post.html.twig', 
-        compact('idPost', 'article')
+        compact('idPost', 'article', 'userId')
         );
     }
     public function newPost(Request $request, EntityManagerInterface $em ): Response
@@ -78,11 +83,16 @@ class BlogController extends AbstractController
         $article->setDateMaj(new \DateTimeImmutable );
         //
         $images = $form->get('images')->getData();
+        // 
+        
         // On boucle sur les images
         foreach($images as $image){
             // On génère un nouveau nom de fichier
             $fichier = md5(uniqid()) . '.' . $image->guessExtension();
 
+            //L'affiche de l'article sera la dernière images chargé
+            $article->setImageName($fichier);
+            //
             // On copie le fichier dans le dossier uploads
             $image->move(
                 $this->getParameter('images_directory'),
@@ -93,8 +103,10 @@ class BlogController extends AbstractController
             $img = new Image();
             $img->setName($fichier);
             $article->addImage($img);
+            $HasImage= true;
         }
-        //
+        //Si le fichier possède une image
+        
 
         $em->persist($article);
         $em->flush();
@@ -115,6 +127,8 @@ class BlogController extends AbstractController
 
     public function editPost(int $idPost,Request $request, EntityManagerInterface $em,ArticleRepository $articleRepository ): Response
     {
+        
+
         $article = $articleRepository->find($idPost) ;
         
         $form= $this->createForm(ArticleType::Class, $article);
@@ -150,8 +164,7 @@ class BlogController extends AbstractController
         }
         return $this->render('blog/editPost.html.twig', 
         ['form' => $form->createView(),
-          'article' => $article,
-          
+          'article' => $article
         ]
         );
     }

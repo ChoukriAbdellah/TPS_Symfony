@@ -11,23 +11,90 @@
 </style>
 
 
-<div class="container marketing">
 
-    <!-- Three columns of text below the carousel -->
-   
 
- <div class="p-4 p-md-5 mb-4 text-white rounded bg-dark">
-   
-   
 
-   
-     
+{# 
+{% for image in article.images %}
+          
         
+<div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+  <div class="carousel-inner">
+
+    <div class="carousel-item active">
+    <img src="{{ asset('/assets/images/' ~ image.name)  |
+                                imagine_filter('carre') }}"  alt="Image" >
+    </div>
+  {% endfor %}
+  </div>
+  <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </a>
+  <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </a>
+</div> #}
+
+{% if article.images.count() > 0 %}
+<div class="d-flex justify-content-center">
+   <div>      
+    <h2> 
+      <span class="text-muted" align="center">Images concernant cet article.</span>
+    </h2>
+</div>
+</div>
+
+{% endif %}
+<div id="carouselExampleCaptions" class="carousel slide mx-auto pl-4 " data-ride="carousel" >
+    <ol class="carousel-indicators">
+
+        {% for item in article.images %}
+            <li data-target="#carouselExampleCaptions" data-slide-to="{{ loop.index-1 }}" class="{{ loop.first ? 'active': '' }} "></li>
+        {% endfor %}
+
+    </ol>
+
+    <div class="carousel-inner">
+        {#
+        variable gobale mostLovedMovies contenant les 10 films les mieux notés( films à la une).
+        On boucle sur cette variable pour afficher les films à la une( titre, image
+        et une partie de la description du film).
+        #}
+        {% for item in article.images %}
+            <div class="carousel-item {{ loop.first ? 'active': '' }} ">
+            <img src="{{ asset('/assets/images/' ~ item.name)  |
+                                            imagine_filter('carre') }}" alt="Image" >   
+                  <div class="carousel-caption d-none d-md-block bg-primary text-white">
+                    <h5 class="text-"> {{  article.titre }}</h5>
+                    <p >{{  article.id| slice(0,100)}} </p>
+                </div>
+            </div>
+        {% endfor %}
+
+    </div>
+    <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#carouselExampleCaptions" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+    </a>
+</div>
+<br/>
+
+ <div class="p-4 p-md-5 mb-4 text-white rounded bg-dark ">
+   
+  
       <div >
 {% if article.imageName %}
 
-        <img src="{{ asset('/assets/images/' ~ article.imageName ) }}" alt="Image" height = "200" width="200">
-
+       <img class="rounded-lg md:w-56" 
+        src="{{ vich_uploader_asset(article, 'imageFile', 'App\\Entity\\Article') |
+        imagine_filter('carre') }}"
+        class="doc-item " alt="Responsive image"/>
         
                                 
        {% else %}
@@ -39,13 +106,18 @@
         <h2>{{ article.titre }}</h2>
         <p>{{ article.description}}</p>
       </div><!-- /.col-lg-4 -->
-  <a class="btn btn-primary my-2" href="{{path('editPost', {idPost:article.id}) }}">Modifier<a/>
+      <div class="d-flex justify-content-center">
+   <div>      
+    <a class="btn btn-primary my-2" href="{{path('editPost', {idPost:article.id}) }}">Modifier<a/>
       <a class="btn btn-danger my-2" href="#" onclick="event.preventDefault(); confirm('Supprimer ce post ?') &&
          document.getElementById('form-id').submit();">Supprimer<a/>      
         <form id ="form-id" action="{{path('deletePost', {idPost:article.id}) }}" method="post" style="display">
         <input type="hidden" method="_method"  value="DELETE"/>
 
       </form>
+</div>
+</div>
+  
 
 
    

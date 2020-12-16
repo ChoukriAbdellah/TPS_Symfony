@@ -12,9 +12,22 @@
     <h1 class="text-center">Modifications</h1>
    {{ form_start(form) }}
    {{ form_widget(form) }}
-    <input type ="submit" value="Modifier" class="btn btn-primary btn-block"> </input>
+<div class="">
+
+  
+      </div>   {% for image in article.images %}
+            <div>
+                <img src="{{ asset('/assets/images/' ~ image.name)  |
+                                imagine_filter('carre') }}" alt="Image" >
+                <a class="btn btn-danger" href="{{ path('article_delete_image', {id: image.id}) }}" data-delete data-token="{{ csrf_token('delete' ~ image.id) }}">Supprimer</a>
+            </div>
+        {% endfor %}
+    <input type ="submit" value="Mettre à jour" class="btn btn-primary btn-block"> </input>
    {{ form_end(form) }}
    
 
 
+{% endblock %}
+{% block javascripts %}
+    <script src="{{ asset('js/images.js') }}"></script>
 {% endblock %}

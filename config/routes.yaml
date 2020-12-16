@@ -29,6 +29,9 @@ deletePost:
     path: /deletePost/{idPost<[0-9]+>}
     controller: App\Controller\BlogController::deletePost
     methods: [GET,POST,DELETE]
-        
 
- 
+article_delete_image:
+    path: /supprime/image/{id}
+    controller: App\Controller\BlogController::deleteImage
+    methods: [GET,POST,DELETE]
+

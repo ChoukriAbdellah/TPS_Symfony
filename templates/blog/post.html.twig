@@ -33,7 +33,7 @@
 <div class="d-flex justify-content-center">
    <div>      
     <h2> 
-      <span class="text-muted" align="center">Images concernant cet article.</span>
+      <span class="text-muted" align="center"></span>
     </h2>
 </div>
 </div>
@@ -58,8 +58,7 @@
             <div class="carousel-item {{ loop.first ? 'active': '' }} ">
             <div class="d-flex justify-content-center">
             <div>      
-              <img src="{{ asset('/assets/images/' ~ item.name)  |
-                                            imagine_filter('moyen') }}" alt="Image" > 
+              <img src="{{ asset('/assets/images/' ~ item.name)   }}" alt="Image" > 
           </div>
           </div>
               

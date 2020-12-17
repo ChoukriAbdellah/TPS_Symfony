@@ -91,6 +91,10 @@ class BlogController extends AbstractController
         // Nous récupérons les données
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
+            if (! $this->getUser()) {
+                $this->addFlash('danger', 'Vous devez vous connecter pour ajouter un commentaire.');
+                return $this->redirectToRoute('app_register');
+            }   
         // Hydrate notre commentaire avec l'article
         $commentaire->setArticle($article);
         $commentaire->setActif(true);
@@ -108,6 +112,7 @@ class BlogController extends AbstractController
 
         // On redirige l'utilisateur
         return $this->redirectToRoute('post', ['idPost' => $idPost]);
+        
     }
     $form=$form->createView();
 

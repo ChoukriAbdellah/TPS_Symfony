@@ -12,10 +12,12 @@ use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Entity\Article;
 use App\Entity\Image;
+use App\Entity\Commentaire;
 use App\Form\ArticleType;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\Security\Core\Security;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use App\Form\CommentaireFormType;
 class BlogController extends AbstractController
 {
     
@@ -58,7 +60,7 @@ class BlogController extends AbstractController
      }
 
     
-    public function post(Security $security,int $idPost ,ArticleRepository $articleRepository): Response
+    public function post(Security $security,int $idPost ,ArticleRepository $articleRepository, Request $request): Response
     {
          //check if user is connect
      $user = $security->getUser();
@@ -70,10 +72,48 @@ class BlogController extends AbstractController
      {
         $userId= -1;
      }
+    
 
         $article = $articleRepository->find($idPost) ;
+
+        $commentaires = $this->getDoctrine()->getRepository(Commentaire::class)->findBy([
+            'article' => $article,
+            'actif' => 1
+        ],['created_at' => 'desc']);
+
+        // Nous créons l'instance de "Commentaires"
+        $commentaire = new Commentaire();
+
+        // Nous créons le formulaire en utilisant "CommentairesType" et on lui passe l'instance
+        $form = $this->createForm(CommentaireFormType::class, $commentaire);
+        
+
+        // Nous récupérons les données
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+        // Hydrate notre commentaire avec l'article
+        $commentaire->setArticle($article);
+        $commentaire->setActif(true);
+
+        // Hydrate notre commentaire avec la date et l'heure courants
+        $commentaire->setCreatedAt(new \DateTime('now'));
+
+        $doctrine = $this->getDoctrine()->getManager();
+
+        // On hydrate notre instance $commentaire
+        $doctrine->persist($commentaire);
+
+        // On écrit en base de données
+        $doctrine->flush();
+
+        // On redirige l'utilisateur
+        return $this->redirectToRoute('post', ['idPost' => $idPost]);
+    }
+    $form=$form->createView();
+
+
         return $this->render('blog/post.html.twig', 
-        compact('idPost', 'article', 'userId')
+        compact('idPost', 'article', 'userId', 'commentaires', 'form')
         );
     }
     public function newPost(Request $request, EntityManagerInterface $em ): Response

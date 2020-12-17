@@ -13,7 +13,7 @@ api:
 post:
     path: /post/{idPost}
     controller: App\Controller\BlogController::post
-    methods: [GET]
+    methods: [GET,POST]
 
 newpost:
     path: /newPost

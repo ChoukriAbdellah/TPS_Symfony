@@ -33,7 +33,7 @@ sss
 >Lancer le navigateur web et  rendez vous  sur https://127.0.0.1:8000
 ###  Projet en production![](https://i.imgur.com/tWLUIFU.png)
 
-L'application symfony ainsi que la base de données sont hébergés sur la plateforme heroku. Vous pouvez y accèder en cliquant sur  [:link:](https://symfonyblog.herokuapp.com/) .
+L'application symfony ainsi que la base de donnée sont hébergés sur la plateforme heroku. Vous pouvez y accèder en cliquant sur  [:link:](https://symfonyblog.herokuapp.com/) .
 
 
 ![](https://i.imgur.com/PYJRESL.png)

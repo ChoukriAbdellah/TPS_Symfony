@@ -1,7 +1,7 @@
 # Blog Symfony 
 
 
- Projet réalisé dans le cadre de l'UE HMIN302 afin de comprendre les principes de fonctionnement du framework Symfony![](https://i.imgur.com/QA5ghoL.png) et ![](https://i.imgur.com/IjdTjb6.png) pour le backend.
+ Projet réalisé dans le cadre de l'UE HMIN302 afin de comprendre les principes de fonctionnement du framework Symfony![](https://i.imgur.com/QA5ghoL.png) et ![](https://i.imgur.com/IjdTjb6.png) pour le frontend.
  
  
 

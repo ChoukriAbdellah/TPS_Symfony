@@ -27,17 +27,11 @@
                         {% for article in row  %}
                             <div class="col-md-4">
                                 <div class="md:flex-shrink-0">
-                                {#
-                                public/uploads/articles/coding-computer-science-5fb67036c1cfe266148679.jpg
-                                |/home/choukri/Bureau/Master2/S1/HMIN302 _E_application/Partie3/projet/blog/public/media/cache/carre/uploads/articles/chk-pdp-5fb59790b204b614795598.jpg
-                                    a continuer : filter les images pour avoir une taille standart imagine_filter('carre') 
-                                #}
+                               
                                 
 
                                 
-                               {# Nonfonctionnel en mode prod, les images sont bien présente dans le dossimer assets/images
-                                  mais ne sont pas chargées. Chose étonnante étant donné que ces images sont bien accssible 
-                                  dans la vue Post.html.twig
+                              
                                   {% if article.imageName  %}
                                 <img src="{{ asset('/assets/images/' ~ article.imageName)  |
                                 imagine_filter('carre') }}" alt="Image" >

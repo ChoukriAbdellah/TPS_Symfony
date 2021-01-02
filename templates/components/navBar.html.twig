@@ -15,11 +15,7 @@
 
             Nouveau post </a>
             </li>
-            <li class="nav-item" {{app.request.get('_route')== 'login' ? 'active' :''}}>
-                <a class="nav-link" href="#">
-                <span class="iconify" data-icon="bx:bxs-user-circle" data-inline="false"></span>
-                Mon compte</a>
-            </li>
+            
 
             <li class="nav-item" {{app.request.get('_route')== 'login' ? 'active' :''}}>
                 <a class="nav-link" href="{{ path('app_logout')}}">
@@ -31,6 +27,11 @@
         
         {% else %}
         
+            <li class="nav-item" {{app.request.get('_route')== 'about' ? 'active' :''}}>
+                <a class="nav-link" href="{{ path('about')}}">
+                <span class="iconify" data-icon="bx:bxs-user-circle" data-inline="false"></span>
+                A propos </a>
+            </li>
             <li class="nav-item" {{app.request.get('_route')== 'login' ? 'active' :''}}>
                 <a class="nav-link" href="{{ path('app_register')}}">
                 <span class="iconify" data-icon="bx:bxs-user-circle" data-inline="false"></span>

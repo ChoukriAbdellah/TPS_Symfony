@@ -101,7 +101,7 @@ class BlogController extends AbstractController
 
         // Hydrate notre commentaire avec la date et l'heure courants
         $commentaire->setCreatedAt(new \DateTime('now'));
-
+        
         $doctrine = $this->getDoctrine()->getManager();
 
         // On hydrate notre instance $commentaire
@@ -121,6 +121,7 @@ class BlogController extends AbstractController
         compact('idPost', 'article', 'userId', 'commentaires', 'form')
         );
     }
+
     public function newPost(Request $request, EntityManagerInterface $em ): Response
     {
 
@@ -151,7 +152,7 @@ class BlogController extends AbstractController
             // On génère un nouveau nom de fichier
             $fichier = md5(uniqid()) . '.' . $image->guessExtension();
 
-            //L'affiche de l'article sera la dernière images chargé
+            //L'affiche de l'article sera la dernière images chargée
             $article->setImageName($fichier);
             //
             // On copie le fichier dans le dossier uploads
@@ -263,6 +264,14 @@ class BlogController extends AbstractController
         }else{
             return new JsonResponse(['error' => 'Token Invalide'], 400);
         }
+    }
+
+
+    public function about(): Response
+    {
+
+        return $this->render('blog/about.html.twig'
+        );
     }
 
 

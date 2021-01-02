@@ -14,6 +14,10 @@ post:
     path: /post/{idPost}
     controller: App\Controller\BlogController::post
     methods: [GET,POST]
+about:
+    path: /about
+    controller: App\Controller\BlogController::about
+    methods: [GET,POST]
 
 newpost:
     path: /newPost

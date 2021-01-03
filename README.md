@@ -9,7 +9,7 @@
 
 ## :memo: Comment ça marche ?
 
-### Lancement en projet en local.
+### Lancement du projet en local.
 
 
 **1-Importer la base de donnée**

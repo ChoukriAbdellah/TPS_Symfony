@@ -45,6 +45,7 @@ L'application symfony ainsi que la base de données sont hébergés sur la plate
 # Contrubuteurs![](https://i.imgur.com/h2EiOtp.png)
 
 - [Abdellah Choukri](https://github.com/ChoukriAbdellah)
+- [Hennani Smail](https://github.com/SmaailHennani)
 
 
  
